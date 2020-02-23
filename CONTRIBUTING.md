@@ -4,7 +4,7 @@
 
 Make sure you agree with the license (GPLv3). See [LICENSE.md](./LICENSE.md) for details.
 
-Code that is committed to the master branch should work with both Debian 8 "Jessie" and Ubuntu 16.04 LTS "Xenial".
+Code that is committed to the master branch should work with both Debian 10.2 "Buster" and Ubuntu 18.04.4 (LTS) "Bionic".
 
 ## Development environment
 
@@ -67,4 +67,4 @@ Verify that your changes pass [ansible-lint](https://github.com/willthames/ansib
 
 Use good commit practices to document your changes. Don't assume the developer reviewing your commits has access to GitHub. The developer could be a future maintainer in a different environment. Similarly, as you address feedback on the pull request, do not assume the reviewer has access to GitHub.
 
-When you issue a pull request, please specify what distribution you used for testing (if any).  Code that is committed to the master branch should work with both Debian 7 and Ubuntu 14.04 LTS.  Support for Debian 8 is coming.
+When you issue a pull request, please specify what distribution you used for testing (if any).  Code that is committed to the master branch should work with both Debian 10.2 and Ubuntu 18.04.4 (LTS).  Support for Debian 11 and Ubuntu 19.10 is coming.
