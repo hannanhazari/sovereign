@@ -63,7 +63,7 @@ Consider the following checklist when reviewing a module's design.
 
 ## Submitting pull requests
 
-Verify that your changes pass [ansible-lint](https://github.com/willthames/ansible-lint) before submitting a pull request.
+Verify that your changes pass [ansible-lint](https://github.com/ansible/ansible-lint) before submitting a pull request.
 
 Use good commit practices to document your changes. Don't assume the developer reviewing your commits has access to GitHub. The developer could be a future maintainer in a different environment. Similarly, as you address feedback on the pull request, do not assume the reviewer has access to GitHub.
 
