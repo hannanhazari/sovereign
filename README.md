@@ -53,7 +53,7 @@ Usage
 What You’ll Need
 ----------------
 
-1.  A VPS (or bare-metal server if you wanna ball hard). My VPS is hosted at [Linode](http://www.linode.com/?r=45405878277aa04ee1f1d21394285da6b43f963b). You’ll probably want at least 512 MB of RAM between Apache, Solr, and PostgreSQL. Mine has 1024.
+1.  A VPS (or bare-metal server if you wanna ball hard). To begin with VPS can hosted at [Linode](http://www.linode.com/?r=45405878277aa04ee1f1d21394285da6b43f963b). You’ll probably want at least 512 MB of RAM between Apache, Solr, and PostgreSQL. Mine has 1024.
 2.  [64-bit Debian 10.2](https://www.debian.org/) or an equivalent Linux distribution. (ALERT: You can use whatever distro you want, but deviating from Debian will require more tweaks to the playbooks. See Ansible’s different [packaging](https://docs.ansible.com/ansible/latest/modules/list_of_packaging_modules.html) modules.)
 3.  A [Tarsnap](https://www.tarsnap.com) account with some credit in it. You could comment this out if you want to use a different backup service. Consider paying your hosting provider for backups or using an additional backup service for redundancy.
 
@@ -110,7 +110,7 @@ Your new account will be automatically set up for passwordless `sudo`. Or you ca
 
 Ansible (the tool setting up your server) runs locally on your computer and sends commands to the remote server. Download this repository somewhere on your machine, either through `Clone or Download > Download ZIP` above, `wget`, or `git` as below
     
-    git clone https://github.com/sovereign/sovereign.git
+    git clone https://github.com/hannanhazari/sovereign.git
 
 ### 4. Configure your installation
 
@@ -129,18 +129,18 @@ If you’ve just bought a new domain name, point it at [Linode’s DNS Manager](
 
 Create `A` or `CNAME` records which point to your server's IP address:
 
-* `example.com`
-* `mail.example.com`
-* `www.example.com` (for Web hosting)
-* `autoconfig.example.com` (for email client automatic configuration)
-* `read.example.com` (for Wallabag)
-* `news.example.com` (for Selfoss)
-* `cloud.example.com` (for ownCloud)
-* `git.example.com` (for cgit)
+* `example.net`
+* `mail.example.net`
+* `www.example.net` (for Web hosting)
+* `autoconfig.example.net` (for email client automatic configuration)
+* `read.example.net` (for Wallabag)
+* `news.example.net` (for Selfoss)
+* `cloud.example.net` (for ownCloud)
+* `git.example.net` (for cgit)
 
 ### 6. Run the Ansible Playbooks
 
-First, make sure you’ve [got Ansible 1.9.3+ installed](http://docs.ansible.com/intro_installation.html#getting-ansible).
+First, make sure you’ve [got Ansible 2.5.0+ installed](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html).
 
 To run the whole dang thing:
 
@@ -158,13 +158,13 @@ The `dependencies` tag just installs dependencies, performing no other operation
 
 ### 7. Finish DNS set-up
 
-Create an `MX` record for `example.com` which assigns `mail.example.com` as the domain’s mail server.
+Create an `MX` record for `example.net` which assigns `mail.example.net` as the domain’s mail server.
 
-To ensure your emails pass DKIM checks you need to add a `txt` record. The name field will be `default._domainkey.EXAMPLE.COM.` The value field contains the public key used by DKIM. The exact value needed can be found in the file `/var/lib/rspamd/dkim/EXAMPLE.COM.default.txt`. It will look something like this:
+To ensure your emails pass DKIM checks you need to add a `txt` record. The name field will be `default._domainkey.EXAMPLE.NET.` The value field contains the public key used by DKIM. The exact value needed can be found in the file `/var/lib/rspamd/dkim/EXAMPLE.NET.default.txt`. It will look something like this:
 
     v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDKKAQfMwKVx+oJripQI+Ag4uTwYnsXKjgBGtl7Tk6UMTUwhMqnitqbR/ZQEZjcNolTkNDtyKZY2Z6LqvM4KsrITpiMbkV1eX6GKczT8Lws5KXn+6BHCKULGdireTAUr3Id7mtjLrbi/E3248Pq0Zs39hkDxsDcve12WccjafJVwIDAQAB
 
-For DMARC you'll also need to add a `txt` record. The name field should be `_dmarc.EXAMPLE.COM` and the value should be `v=DMARC1; p=none`. More info on DMARC can be found [here](https://dmarc.org).
+For DMARC you'll also need to add a `txt` record. The name field should be `_dmarc.EXAMPLE.NET` and the value should be `v=DMARC1; p=none`. More info on DMARC can be found [here](https://dmarc.org).
 
 Set up SPF and reverse DNS [as per this post](http://sealedabstract.com/code/nsa-proof-your-e-mail-in-2-hours/). Make sure to validate that it’s all working, for example, by sending an email to <a href="mailto:check-auth@verifier.port25.com">check-auth@verifier.port25.com</a> and reviewing the report that will be emailed back to you.
 
@@ -172,13 +172,13 @@ Set up SPF and reverse DNS [as per this post](http://sealedabstract.com/code/nsa
 
 Sign in to the ZNC web interface and set things up to your liking. It isn’t exposed through the firewall, so you must first set up an SSH tunnel:
 
-	ssh deploy@example.com -L 6643:localhost:6643
+	ssh deploy@example.net -L 6643:localhost:6643
 
 Then proceed to http://localhost:6643 in your web browser.
 
 Similarly, to access the server monitoring page, use another SSH tunnel:
 
-    ssh deploy@example.com -L 2812:localhost:2812
+    ssh deploy@example.net -L 2812:localhost:2812
 
 Again proceeding to http://localhost:2812 in your web browser.
 
@@ -192,7 +192,7 @@ one in the file `owncloud_db_password`.
 How To Use Your New Personal Cloud
 ----------------------------------
 
-We’re collecting known-good client setups [on our wiki](https://github.com/sovereign/sovereign/wiki/Usage).
+We’re collecting known-good client setups [on our wiki](https://github.com/hannanhazari/sovereign/wiki/Usage).
 
 Troubleshooting
 ---------------
