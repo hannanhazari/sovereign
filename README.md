@@ -32,18 +32,18 @@ What do you get if you point Sovereign at a server? All kinds of good stuff!
 -   [CalDAV](https://en.wikipedia.org/wiki/CalDAV) and [CardDAV](https://en.wikipedia.org/wiki/CardDAV) to keep your calendars and contacts in sync, via [ownCloud](https://owncloud.org/).
 -   Your own private storage cloud via [ownCloud](https://owncloud.org/).
 -   Your own VPN server via [OpenVPN](https://openvpn.net/community/).
--   An IRC bouncer via [ZNC](http://wiki.znc.in/ZNC).
--   [Monit](http://mmonit.com/monit/) to keep everything running smoothly (and alert you when it’s not).
--   [collectd](http://collectd.org/) to collect system statistics.
+-   An IRC bouncer via [ZNC](https://wiki.znc.in/ZNC).
+-   [Monit](https://mmonit.com/monit/) to keep everything running smoothly (and alert you when it’s not).
+-   [collectd](https://collectd.org/) to collect system statistics.
 -   Web hosting (ex: for your blog) via [Apache](https://www.apache.org/).
 -   Firewall management via [Uncomplicated Firewall (ufw)](https://wiki.ubuntu.com/UncomplicatedFirewall).
--   Intrusion prevention via [fail2ban](http://www.fail2ban.org/) and rootkit detection via [rkhunter](http://rkhunter.sourceforge.net).
+-   Intrusion prevention via [fail2ban](http://www.fail2ban.org/wiki/index.php/Main_Page/) and rootkit detection via [rkhunter](http://rkhunter.sourceforge.net/).
 -   SSH configuration preventing root login and insecure password authentication
--   [RFC6238](http://tools.ietf.org/html/rfc6238) two-factor authentication compatible with [Google Authenticator](http://en.wikipedia.org/wiki/Google_Authenticator) and various hardware tokens
+-   [RFC6238](http://tools.ietf.org/html/rfc6238/) two-factor authentication compatible with [Google Authenticator](https://en.wikipedia.org/wiki/Google_Authenticator) and various hardware tokens
 -   Nightly backups to [Tarsnap](https://www.tarsnap.com/).
--   Git hosting via [cgit](http://git.zx2c4.com/cgit/about/) and [gitolite](https://github.com/sitaramc/gitolite).
--   Read-it-later via [Wallabag](https://www.wallabag.org/)
--   A bunch of nice-to-have tools like [mosh](http://mosh.mit.edu) and [htop](http://htop.sourceforge.net) that make life with a server a little easier.
+-   Git hosting via [cgit](https://git.zx2c4.com/cgit/about/) and [gitolite](https://github.com/sitaramc/gitolite).
+-   Read-it-later via [Wallabag](https://www.wallabag.org/en)
+-   A bunch of nice-to-have tools like [mosh](https://mosh.org/) and [htop](http://hisham.hm/htop/) that make life with a server a little easier.
 
 Don’t want one or more of the above services? Comment out the relevant role in `site.yml`. Or get more granular and comment out the associated `include:` directive in one of the playbooks.
 
@@ -54,10 +54,10 @@ What You’ll Need
 ----------------
 
 1.  A VPS (or bare-metal server if you wanna ball hard). My VPS is hosted at [Linode](http://www.linode.com/?r=45405878277aa04ee1f1d21394285da6b43f963b). You’ll probably want at least 512 MB of RAM between Apache, Solr, and PostgreSQL. Mine has 1024.
-2.  [64-bit Debian 8.3](http://www.debian.org/) or an equivalent Linux distribution. (You can use whatever distro you want, but deviating from Debian will require more tweaks to the playbooks. See Ansible’s different [packaging](http://docs.ansible.com/ansible/list_of_packaging_modules.html) modules.)
-3.  A [Tarsnap](http://www.tarsnap.com) account with some credit in it. You could comment this out if you want to use a different backup service. Consider paying your hosting provider for backups or using an additional backup service for redundancy.
+2.  [64-bit Debian 10.2](https://www.debian.org/) or an equivalent Linux distribution. (ALERT: You can use whatever distro you want, but deviating from Debian will require more tweaks to the playbooks. See Ansible’s different [packaging](https://docs.ansible.com/ansible/latest/modules/list_of_packaging_modules.html) modules.)
+3.  A [Tarsnap](https://www.tarsnap.com) account with some credit in it. You could comment this out if you want to use a different backup service. Consider paying your hosting provider for backups or using an additional backup service for redundancy.
 
-You do not need to acquire an SSL certificate.  The SSL certificates you need will be obtained from [Let's Encrypt](https://letsencrypt.org/) automatically when you deploy your server.
+You do not need to acquire an SSL certificate.  The SSL certificates you need will be obtained from [Let's Encrypt](https://letsencrypt.org/) automatically when you deploy your server. Alternately, [Certbot](https://certbot.eff.org/) can be used. See the [instructions](https://certbot.eff.org/instructions).
 
 
 Installation
@@ -69,7 +69,7 @@ The following steps are done on the remote server by `ssh`ing into it and runnin
 
 ### 1. Install required packages e.g `aptitude` is required on Debian
 
-    apt-get install sudo python
+    sudo apt-get install python3
 
 ### 2. Get a Tarsnap machine key
 
@@ -77,7 +77,7 @@ If you haven’t already, [download and install Tarsnap](https://www.tarsnap.com
 
 Create a new machine key for your server:
 
-    tarsnap-keygen --keyfile roles/tarsnap/files/decrypted_tarsnap.key --user me@example.com --machine example.com
+    tarsnap-keygen --keyfile roles/tarsnap/files/decrypted_tarsnap.key --user me@example.net --machine example.net
 
 Download a copy of this key and keep it somewhere safe!  There's no point having backups if you can't retrieve them when needed.
 
