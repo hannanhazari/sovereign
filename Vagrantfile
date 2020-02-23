@@ -45,7 +45,7 @@ Vagrant.configure('2') do |config|
     buster.vm.box = 'debian/contrib-buster64'
   end
 
-  # Ubuntu 18.04 (LTS) 64-bit (currently unavailable)
+  # Ubuntu 18.04.4 (LTS) 64-bit (currently unavailable)
   config.vm.define 'bionic', autostart: false do |bionic|
     bionic.vm.box = 'ubuntu/bionic64'
   end
